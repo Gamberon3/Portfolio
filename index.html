@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gamberone Projects</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -18,11 +14,7 @@
             min-height: 100vh;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Header */
         header {
@@ -39,26 +31,30 @@
         }
 
         .logo {
-            width: 64px;
-            height: 64px;
-            background: #ff6b35;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
+            width: 64px; height: 64px;
+            background: #ff6b35; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; font-weight: bold;
         }
 
-        h1 {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
+        h1 { font-size: 36px; font-weight: bold; margin-bottom: 4px; }
+        .subtitle { color: #9ca3af; font-size: 14px; }
 
-        .subtitle {
-            color: #9ca3af;
-            font-size: 14px;
+        /* Filter Section */
+        .filter-section { padding: 24px 0; text-align: center; }
+        .filter-title { font-size: 18px; margin-bottom: 16px; color: #9ca3af; }
+
+        .filter-control { display: flex; justify-content: center; }
+        .filter-select {
+            background: #111827; color: #fff;
+            border: 1px solid #374151;
+            padding: 10px 14px; border-radius: 8px;
+            min-width: 220px; outline: none; cursor: pointer;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        .filter-select:hover {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 4px rgba(255,107,53,.15);
         }
 
         /* Projects Grid */
@@ -76,6 +72,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
+        .project-card.hidden { display: none; }
 
         .project-card:hover {
             border-color: #ff6b35;
@@ -84,224 +81,99 @@
         }
 
         .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-            cursor: pointer;
+            width: 100%; height: 250px;
+            object-fit: cover; object-position: center;
+            display: block; cursor: pointer;
             transition: transform 0.3s ease;
         }
+        .project-image:hover { transform: scale(1.02); }
 
-        .project-image:hover {
-            transform: scale(1.02);
-        }
-
-        .project-content {
-            padding: 24px;
-        }
+        .project-content { padding: 24px; }
 
         .project-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between;
             margin-bottom: 16px;
         }
 
-        .project-title-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .project-title-wrapper { display: flex; align-items: center; gap: 12px; }
+        .project-icon { color: #ff6b35; font-size: 24px; }
+        .project-title { font-size: 20px; font-weight: bold; }
 
-        .project-icon {
-            color: #ff6b35;
-            font-size: 24px;
-        }
+        .github-link { color: #9ca3af; text-decoration: none; transition: color 0.3s; }
+        .github-link:hover { color: white; }
 
-        .project-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .github-link {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .github-link:hover {
-            color: white;
-        }
-
-        .project-description {
-            color: #d1d5db;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
+        .project-description { color: #d1d5db; margin-bottom: 16px; line-height: 1.5; }
 
         .project-stats {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-            font-size: 14px;
-            color: #9ca3af;
+            display: flex; gap: 16px; margin-bottom: 16px;
+            font-size: 14px; color: #9ca3af;
         }
 
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+        .stat { display: flex; align-items: center; gap: 4px; }
+        .language-dot { width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; }
 
-        .language-dot {
-            width: 12px;
-            height: 12px;
-            background: #3b82f6;
-            border-radius: 50%;
-        }
-
-        .topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
+        .topics { display: flex; flex-wrap: wrap; gap: 8px; }
         .topic {
             padding: 4px 12px;
             background: rgba(255, 107, 53, 0.2);
             color: #fca5a5;
             border-radius: 16px;
-            font-size: 12px;
+            font-size: 12px; cursor: pointer;
+            transition: all 0.3s ease;
         }
+        .topic:hover { background: rgba(255, 107, 53, 0.3); }
 
         /* GitHub Button */
-        .github-section {
-            text-align: center;
-            margin-top: 48px;
-        }
-
+        .github-section { text-align: center; margin-top: 48px; }
         .github-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #1f2937;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background 0.3s;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #1f2937; color: white; padding: 12px 24px;
+            border-radius: 8px; text-decoration: none; transition: background 0.3s;
         }
-
-        .github-button:hover {
-            background: #374151;
-        }
+        .github-button:hover { background: #374151; }
 
         /* Contact Section */
-        .contact-section {
-            margin-top: 80px;
-            padding-top: 48px;
-            border-top: 1px solid #374151;
-        }
-
-        .contact-title {
-            font-size: 32px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 32px;
-        }
+        .contact-section { margin-top: 80px; padding-top: 48px; border-top: 1px solid #374151; }
+        .contact-title { font-size: 32px; font-weight: bold; text-align: center; margin-bottom: 32px; }
 
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmin(250px, 1fr));
-            gap: 24px;
-            max-width: 800px;
-            margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px; max-width: 800px; margin: 0 auto;
         }
 
         .contact-card {
             background: rgba(31, 41, 55, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid #374151;
-            border-radius: 8px;
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-decoration: none;
-            color: white;
+            border: 1px solid #374151; border-radius: 8px; padding: 24px;
+            display: flex; align-items: center; gap: 16px;
+            text-decoration: none; color: white;
             transition: all 0.3s ease;
         }
-
-        .contact-card:hover {
-            border-color: #ff6b35;
-            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
-        }
+        .contact-card:hover { border-color: #ff6b35; box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2); }
 
         .contact-icon {
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             background: rgba(255, 107, 53, 0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
             font-size: 24px;
         }
-
-        .contact-info h3 {
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .contact-info p {
-            color: #9ca3af;
-            font-size: 14px;
-        }
+        .contact-info h3 { font-weight: bold; margin-bottom: 4px; }
+        .contact-info p { color: #9ca3af; font-size: 14px; }
 
         /* Footer */
-        footer {
-            border-top: 1px solid #374151;
-            margin-top: 80px;
-            padding: 32px 0;
-            text-align: center;
-            color: #9ca3af;
-        }
+        footer { border-top: 1px solid #374151; margin-top: 80px; padding: 32px 0; text-align: center; color: #9ca3af; }
 
         /* Lightbox */
         .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); z-index: 1000;
+            justify-content: center; align-items: center; cursor: pointer;
         }
+        .lightbox.active { display: flex; }
 
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            color: white;
-            cursor: pointer;
-        }
+        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -310,14 +182,15 @@
         <span class="lightbox-close">&times;</span>
         <img id="lightbox-img" src="" alt="Full size image">
     </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">G</div>
                 <div>
-                    <h1>My Garry's Mod Projects</h1>
-                    <p class="subtitle">Gamberone | Addons & Gamemodes for GMod</p>
+                    <h1>Gamberone Portfolio</h1>
+                    <p class="subtitle">Gamberone | Addons, Gamemodes for GMod & more.</p>
                 </div>
             </div>
         </div>
@@ -325,10 +198,20 @@
 
     <!-- Main Content -->
     <main class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <p class="filter-title">Filter by tag</p>
+            <div class="filter-control">
+                <select id="filter-select" class="filter-select">
+                    <option value="all" selected>All</option>
+                </select>
+            </div>
+        </div>
+
         <!-- Projects Grid -->
-        <div class="projects-grid">
+        <div class="projects-grid" id="projects-grid">
             <!-- Project 1 -->
-            <div class="project-card">
+            <div class="project-card" data-tags="Discord,Bot,JavaScript">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -338,72 +221,72 @@
                         <a href="https://github.com/Gamberon3/Discord-bot" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">All the discord bot i have made for my RP gmod server</p>
-                    <img src="https://1000logos.net/wp-content/uploads/2021/06/Discord-logo.jpg" alt="discord" class="project-image" onclick="openLightbox(this.src)">
+                    <img src="https://static.vecteezy.com/system/resources/previews/006/892/622/non_2x/discord-logo-icons-editorial-collection-free-vector.jpg" alt="discord" class="project-image" onclick="openLightbox(this.src)">
                     <div class="project-stats" style="margin-top: 16px;">
                         <div class="stat">⭐ 0</div>
                         <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> JavaScript</div>
                     </div>
                     <div class="topics">
-                        <span class="topic">Discord</span>
-                        <span class="topic">Bot</span>
-                        <span class="topic">JavaScript</span>
+                        <span class="topic" onclick="filterByTag('Discord')">Discord</span>
+                        <span class="topic" onclick="filterByTag('Bot')">Bot</span>
+                        <span class="topic" onclick="filterByTag('JavaScript')">JavaScript</span>
                     </div>
                 </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="project-card">
+            <div class="project-card" data-tags="Helix,addons,Roleplay">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
-                            <span class="project-icon">💻</span>
-                            <h3 class="project-title">Example Gamemode</h3>
+                            <span class="project-icon">🪄</span>
+                            <h3 class="project-title">Sorting hat</h3>
                         </div>
                         <a href="https://github.com/yourusername/gamemode" target="_blank" class="github-link">🔗</a>
                     </div>
-                    <p class="project-description">A custom gamemode for GMod</p>
-                    <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Gamemode+Image" alt="Example Gamemode" class="project-image" onclick="openLightbox(this.src)">
+                    <p class="project-description">HP inspired sorting hat simply costumizable with faction and sound</p>
+                    <img src="https://i.redd.it/ourlb1zsin451.jpg" alt="Sorting hat" class="project-image" onclick="openLightbox(this.src)">
                     <div class="project-stats" style="margin-top: 16px;">
-                        <div class="stat">⭐ 28</div>
-                        <div class="stat">🔀 8</div>
+                        <div class="stat">⭐ 0</div>
+                        <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
                     </div>
                     <div class="topics">
-                        <span class="topic">gmod</span>
-                        <span class="topic">gamemode</span>
-                        <span class="topic">multiplayer</span>
+                        <span class="topic" onclick="filterByTag('Helix')">Helix</span>
+                        <span class="topic" onclick="filterByTag('addons')">addons</span>
+                        <span class="topic" onclick="filterByTag('Roleplay')">Roleplay</span>
                     </div>
                 </div>
             </div>
 
             <!-- Project 3 -->
-            <div class="project-card">
+            <div class="project-card" data-tags="Helix,Plugins,Roleplay">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
                             <span class="project-icon">💻</span>
-                            <h3 class="project-title">Weapon Pack</h3>
+                            <h3 class="project-title">Promotion plugin</h3>
                         </div>
                         <a href="https://github.com/yourusername/weapons" target="_blank" class="github-link">🔗</a>
                     </div>
-                    <p class="project-description">Custom weapons collection for Garry's Mod</p>
-                    <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Weapons+Pack" alt="Weapon Pack" class="project-image" onclick="openLightbox(this.src)">
+                    <p class="project-description">Easy year setup.Faction and model,life and more change based on year.</p>
+                    <img src="https://pics.clipartpng.com/Graduation_Cap_Books_and_Diploma_PNG_Clipart-374.png" alt="Promotion plugin" class="project-image" onclick="openLightbox(this.src)">
                     <div class="project-stats" style="margin-top: 16px;">
-                        <div class="stat">⭐ 35</div>
-                        <div class="stat">🔀 15</div>
+                        <div class="stat">⭐ 0</div>
+                        <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
                     </div>
                     <div class="topics">
-                        <span class="topic">gmod</span>
-                        <span class="topic">weapons</span>
-                        <span class="topic">swep</span>
+                        <span class="topic" onclick="filterByTag('Helix')">Helix</span>
+                        <span class="topic" onclick="filterByTag('Plugins')">Plugins</span>
+                        <span class="topic" onclick="filterByTag('Roleplay')">Roleplay</span>
                     </div>
                 </div>
             </div>
 
             <!-- Project 4 -->
-            <div class="project-card">
+            <div class="project-card" data-tags="gmod,tools,admin">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -413,16 +296,16 @@
                         <a href="https://github.com/yourusername/maptools" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">Essential tools for map creators and admins</p>
-                    <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Map+Tools" alt="Map Tools" class="project-image" style="margin-bottom: 16px; border-radius: 8px;" onclick="openLightbox(this.src)">
-                    <div class="project-stats">
+                    <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Map+Tools" alt="Map Tools" class="project-image" onclick="openLightbox(this.src)">
+                    <div class="project-stats" style="margin-top: 16px;">
                         <div class="stat">⭐ 19</div>
                         <div class="stat">🔀 5</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
                     </div>
                     <div class="topics">
-                        <span class="topic">gmod</span>
-                        <span class="topic">tools</span>
-                        <span class="topic">admin</span>
+                        <span class="topic" onclick="filterByTag('gmod')">gmod</span>
+                        <span class="topic" onclick="filterByTag('tools')">tools</span>
+                        <span class="topic" onclick="filterByTag('admin')">admin</span>
                     </div>
                 </div>
             </div>
@@ -466,21 +349,67 @@
     </footer>
 
     <script>
+        let currentFilter = 'all';
+
+        function initializeFilters() {
+            const allTags = new Set();
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tagsAttr = card.getAttribute('data-tags') || '';
+                const tags = tagsAttr.split(',');
+                tags.forEach(tag => {
+                    const t = tag.trim();
+                    if (t) allTags.add(t);
+                });
+            });
+
+            const select = document.getElementById('filter-select');
+            [...allTags].sort().forEach(tag => {
+                const opt = document.createElement('option');
+                opt.value = tag;
+                opt.textContent = tag;
+                select.appendChild(opt);
+            });
+
+            select.addEventListener('change', (e) => {
+                applyFilter(e.target.value);
+            });
+        }
+
+        function applyFilter(tag) {
+            currentFilter = tag;
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tags = (card.getAttribute('data-tags') || '')
+                    .split(',')
+                    .map(t => t.trim());
+                if (tag === 'all' || tags.includes(tag)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Mantiene compatibilità coi "topic" cliccabili
+        function filterByTag(tag) {
+            const select = document.getElementById('filter-select');
+            if (select) select.value = tag;
+            applyFilter(tag);
+        }
+
+        // Lightbox
         function openLightbox(src) {
             document.getElementById('lightbox').classList.add('active');
             document.getElementById('lightbox-img').src = src;
         }
-
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
         }
-
-        // Close on ESC key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
+            if (e.key === 'Escape') closeLightbox();
         });
+
+        // Init
+        initializeFilters();
     </script>
 </body>
 </html>
