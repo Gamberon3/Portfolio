@@ -19,15 +19,173 @@
         /* Header */
         header {
             border-bottom: 1px solid #374151;
-            background: rgba(17, 24, 39, 0.5);
+            background: rgba(17, 24, 39, 0.95);
             backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-content {
             padding: 32px 0;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Hamburger Menu Button */
+        .hamburger-btn {
+            background: rgba(255, 107, 53, 0.2);
+            border: 1px solid #ff6b35;
+            color: #ff6b35;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 107, 53, 0.3);
+            transform: scale(1.05);
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: #ff6b35;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Side Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100%;
+            background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+            border-left: 1px solid #374151;
+            z-index: 999;
+            transition: right 0.4s ease;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .menu-header {
+            padding: 32px 24px;
+            border-bottom: 1px solid #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .menu-close {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 32px;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-close:hover {
+            color: white;
+        }
+
+        .menu-items {
+            padding: 24px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            border-left-color: #ff6b35;
+            color: white;
+            padding-left: 32px;
+        }
+
+        .menu-item.active {
+            background: rgba(255, 107, 53, 0.2);
+            border-left-color: #ff6b35;
+            color: #ff6b35;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            width: 32px;
+            text-align: center;
         }
 
         .logo {
@@ -40,11 +198,82 @@
         h1 { font-size: 36px; font-weight: bold; margin-bottom: 4px; }
         .subtitle { color: #9ca3af; font-size: 14px; }
 
+        /* View Controls */
+        .view-controls {
+            display: flex;
+            justify-content: flex-end;
+            padding: 24px 0;
+            gap: 12px;
+        }
+
+        .view-btn {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid #374151;
+            color: #9ca3af;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-btn:hover {
+            border-color: #ff6b35;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .view-btn.active {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+
         /* Filter Section */
-        .filter-section { padding: 24px 0; text-align: center; }
+        .filter-section { 
+            padding: 0 0 24px 0; 
+            text-align: center;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .filter-section.show {
+            max-height: 200px;
+            opacity: 1;
+            padding: 24px 0;
+        }
+
         .filter-title { font-size: 18px; margin-bottom: 16px; color: #9ca3af; }
 
-        .filter-control { display: flex; justify-content: center; }
+        .filter-control { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-input {
+            background: #111827; color: #fff;
+            border: 1px solid #374151;
+            padding: 10px 14px; border-radius: 8px;
+            min-width: 280px; outline: none;
+            font-size: 16px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        .filter-input:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 4px rgba(255,107,53,.15);
+        }
+        .filter-input::placeholder {
+            color: #6b7280;
+        }
+
         .filter-select {
             background: #111827; color: #fff;
             border: 1px solid #374151;
@@ -57,12 +286,38 @@
             box-shadow: 0 0 0 4px rgba(255,107,53,.15);
         }
 
+        .clear-btn {
+            background: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
+            border: 1px solid #ff6b35;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .clear-btn:hover {
+            background: rgba(255, 107, 53, 0.3);
+            transform: scale(1.05);
+        }
+
+        .results-count {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
         /* Projects Grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            padding: 48px 0;
+            padding: 24px 0 48px 0;
+            transition: all 0.3s ease;
+        }
+
+        .projects-grid.list-view {
+            grid-template-columns: 1fr;
         }
 
         .project-card {
@@ -71,7 +326,15 @@
             border: 1px solid #374151;
             border-radius: 8px;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
+        
+        .projects-grid.list-view .project-card {
+            flex-direction: row;
+            align-items: center;
+        }
+
         .project-card.hidden { display: none; }
 
         .project-card:hover {
@@ -81,17 +344,34 @@
         }
 
         .project-image {
-            width: 100%; height: 250px;
-            object-fit: cover; object-position: center;
-            display: block; cursor: pointer;
+            width: 100%; 
+            height: 250px;
+            object-fit: cover; 
+            object-position: center;
+            display: block; 
+            cursor: pointer;
             transition: transform 0.3s ease;
+            border-radius: 8px 8px 0 0;
         }
+        
+        .projects-grid.list-view .project-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px 0 0 8px;
+            flex-shrink: 0;
+        }
+
         .project-image:hover { transform: scale(1.02); }
 
-        .project-content { padding: 24px; }
+        .project-content { 
+            padding: 24px; 
+            flex: 1;
+        }
 
         .project-header {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
             margin-bottom: 16px;
         }
 
@@ -99,14 +379,27 @@
         .project-icon { color: #ff6b35; font-size: 24px; }
         .project-title { font-size: 20px; font-weight: bold; }
 
-        .github-link { color: #9ca3af; text-decoration: none; transition: color 0.3s; }
+        .github-link { 
+            color: #9ca3af; 
+            text-decoration: none; 
+            transition: color 0.3s;
+            font-size: 20px;
+        }
         .github-link:hover { color: white; }
 
-        .project-description { color: #d1d5db; margin-bottom: 16px; line-height: 1.5; }
+        .project-description { 
+            color: #d1d5db; 
+            margin-bottom: 16px; 
+            line-height: 1.5; 
+        }
 
         .project-stats {
-            display: flex; gap: 16px; margin-bottom: 16px;
-            font-size: 14px; color: #9ca3af;
+            display: flex; 
+            gap: 16px; 
+            margin-bottom: 16px;
+            font-size: 14px; 
+            color: #9ca3af;
+            flex-wrap: wrap;
         }
 
         .stat { display: flex; align-items: center; gap: 4px; }
@@ -118,7 +411,8 @@
             background: rgba(255, 107, 53, 0.2);
             color: #fca5a5;
             border-radius: 16px;
-            font-size: 12px; cursor: pointer;
+            font-size: 12px; 
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         .topic:hover { background: rgba(255, 107, 53, 0.3); }
@@ -126,9 +420,15 @@
         /* GitHub Button */
         .github-section { text-align: center; margin-top: 48px; }
         .github-button {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: #1f2937; color: white; padding: 12px 24px;
-            border-radius: 8px; text-decoration: none; transition: background 0.3s;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px;
+            background: #1f2937; 
+            color: white; 
+            padding: 12px 24px;
+            border-radius: 8px; 
+            text-decoration: none; 
+            transition: background 0.3s;
         }
         .github-button:hover { background: #374151; }
 
@@ -137,46 +437,111 @@
         .contact-title { font-size: 32px; font-weight: bold; text-align: center; margin-bottom: 32px; }
 
         .contact-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px; max-width: 800px; margin: 0 auto;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px; 
+            max-width: 800px; 
+            margin: 0 auto;
         }
 
         .contact-card {
             background: rgba(31, 41, 55, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid #374151; border-radius: 8px; padding: 24px;
-            display: flex; align-items: center; gap: 16px;
-            text-decoration: none; color: white;
+            border: 1px solid #374151; 
+            border-radius: 8px; 
+            padding: 24px;
+            display: flex; 
+            align-items: center; 
+            gap: 16px;
+            text-decoration: none; 
+            color: white;
             transition: all 0.3s ease;
         }
-        .contact-card:hover { border-color: #ff6b35; box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2); }
+        .contact-card:hover { 
+            border-color: #ff6b35; 
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2); 
+        }
 
         .contact-icon {
-            width: 48px; height: 48px;
+            width: 48px; 
+            height: 48px;
             background: rgba(255, 107, 53, 0.2);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             font-size: 24px;
         }
         .contact-info h3 { font-weight: bold; margin-bottom: 4px; }
         .contact-info p { color: #9ca3af; font-size: 14px; }
 
         /* Footer */
-        footer { border-top: 1px solid #374151; margin-top: 80px; padding: 32px 0; text-align: center; color: #9ca3af; }
+        footer { 
+            border-top: 1px solid #374151; 
+            margin-top: 80px; 
+            padding: 32px 0; 
+            text-align: center; 
+            color: #9ca3af; 
+        }
 
         /* Lightbox */
         .lightbox {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); z-index: 1000;
-            justify-content: center; align-items: center; cursor: pointer;
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9); 
+            z-index: 1000;
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer;
         }
         .lightbox.active { display: flex; }
 
-        .lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; }
+        .lightbox img { 
+            max-width: 90%; 
+            max-height: 90%; 
+            object-fit: contain; 
+            border-radius: 8px; 
+        }
+        .lightbox-close { 
+            position: absolute; 
+            top: 20px; 
+            right: 30px; 
+            font-size: 40px; 
+            color: white; 
+            cursor: pointer; 
+        }
     </style>
 </head>
 <body>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+        <div class="menu-header">
+            <span class="menu-title">Menu</span>
+            <button class="menu-close" onclick="toggleMenu()">&times;</button>
+        </div>
+        <div class="menu-items">
+            <a href="#home" class="menu-item active" onclick="navigateToSection(event, 'home')">
+                <span class="menu-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="#projects" class="menu-item" onclick="navigateToSection(event, 'projects')">
+                <span class="menu-icon">💻</span>
+                <span>Progetti</span>
+            </a>
+            <a href="#contact" class="menu-item" onclick="navigateToSection(event, 'contact')">
+                <span class="menu-icon">📧</span>
+                <span>Contatti</span>
+            </a>
+        </div>
+    </div>
+
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
@@ -184,34 +549,67 @@
     </div>
 
     <!-- Header -->
-    <header>
+    <header id="home">
         <div class="container">
             <div class="header-content">
-                <div class="logo">G</div>
-                <div>
-                    <h1>Gamberone Portfolio</h1>
-                    <p class="subtitle">Gamberone | Addons, Gamemodes for GMod & more.</p>
+                <div class="header-left">
+                    <div class="logo">G</div>
+                    <div>
+                        <h1>Gamberone Portfolio</h1>
+                        <p class="subtitle">Gamberone | Addons, Gamemodes for GMod & more.</p>
+                    </div>
                 </div>
+                <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMenu()">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container">
-        <!-- Filter Section -->
-        <div class="filter-section">
-            <p class="filter-title">Filter by tag</p>
+        <!-- View Controls -->
+        <div class="view-controls" id="projects" style="scroll-margin-top: 100px;">
+            <button class="view-btn active" id="grid-btn" onclick="setView('grid')">
+                <span>⊞</span>
+                <span>Griglia</span>
+            </button>
+            <button class="view-btn" id="list-btn" onclick="setView('list')">
+                <span>☰</span>
+                <span>Lista</span>
+            </button>
+            <button class="view-btn" id="filter-btn" onclick="toggleFilters()">
+                <span>🔍</span>
+                <span>Filtra</span>
+            </button>
+        </div>
+
+        <!-- Filter Section (Hidden by default) -->
+        <div class="filter-section" id="filter-section">
+            <p class="filter-title">🔍 Cerca i tuoi progetti</p>
             <div class="filter-control">
+                <input 
+                    type="text" 
+                    id="filter-input" 
+                    class="filter-input" 
+                    placeholder="Cerca per nome, tag o descrizione..."
+                    autocomplete="off"
+                >
                 <select id="filter-select" class="filter-select">
-                    <option value="all" selected>All</option>
+                    <option value="all" selected>Tutti i tag</option>
                 </select>
+                <button class="clear-btn" onclick="clearFilters()">Pulisci</button>
             </div>
+            <p class="results-count" id="results-count">Mostrando tutti i progetti</p>
         </div>
 
         <!-- Projects Grid -->
-        <div class="projects-grid" id="projects-grid">
+        <div class="projects-grid" id="projects-grid" style="scroll-margin-top: 100px;">
             <!-- Project 1 -->
             <div class="project-card" data-tags="Discord,Bot,JavaScript">
+                <img src="https://static.vecteezy.com/system/resources/previews/006/892/622/non_2x/discord-logo-icons-editorial-collection-free-vector.jpg" alt="discord" class="project-image" onclick="openLightbox(this.src)">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -221,8 +619,7 @@
                         <a href="https://github.com/Gamberon3/Discord-bot" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">All the discord bot i have made for my RP gmod server</p>
-                    <img src="https://static.vecteezy.com/system/resources/previews/006/892/622/non_2x/discord-logo-icons-editorial-collection-free-vector.jpg" alt="discord" class="project-image" onclick="openLightbox(this.src)">
-                    <div class="project-stats" style="margin-top: 16px;">
+                    <div class="project-stats">
                         <div class="stat">⭐ 0</div>
                         <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> JavaScript</div>
@@ -237,6 +634,7 @@
 
             <!-- Project 2 -->
             <div class="project-card" data-tags="Helix,addons,Roleplay">
+                <img src="https://i.redd.it/ourlb1zsin451.jpg" alt="Sorting hat" class="project-image" onclick="openLightbox(this.src)">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -246,8 +644,7 @@
                         <a href="https://github.com/yourusername/gamemode" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">HP inspired sorting hat simply costumizable with faction and sound</p>
-                    <img src="https://i.redd.it/ourlb1zsin451.jpg" alt="Sorting hat" class="project-image" onclick="openLightbox(this.src)">
-                    <div class="project-stats" style="margin-top: 16px;">
+                    <div class="project-stats">
                         <div class="stat">⭐ 0</div>
                         <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
@@ -262,6 +659,7 @@
 
             <!-- Project 3 -->
             <div class="project-card" data-tags="Helix,Plugins,Roleplay">
+                <img src="https://pics.clipartpng.com/Graduation_Cap_Books_and_Diploma_PNG_Clipart-374.png" alt="Promotion plugin" class="project-image" onclick="openLightbox(this.src)">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -271,8 +669,7 @@
                         <a href="https://github.com/yourusername/weapons" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">Easy year setup.Faction and model,life and more change based on year.</p>
-                    <img src="https://pics.clipartpng.com/Graduation_Cap_Books_and_Diploma_PNG_Clipart-374.png" alt="Promotion plugin" class="project-image" onclick="openLightbox(this.src)">
-                    <div class="project-stats" style="margin-top: 16px;">
+                    <div class="project-stats">
                         <div class="stat">⭐ 0</div>
                         <div class="stat">🔀 0</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
@@ -287,6 +684,7 @@
 
             <!-- Project 4 -->
             <div class="project-card" data-tags="gmod,tools,admin">
+                <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Map+Tools" alt="Map Tools" class="project-image" onclick="openLightbox(this.src)">
                 <div class="project-content">
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -296,8 +694,7 @@
                         <a href="https://github.com/yourusername/maptools" target="_blank" class="github-link">🔗</a>
                     </div>
                     <p class="project-description">Essential tools for map creators and admins</p>
-                    <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Map+Tools" alt="Map Tools" class="project-image" onclick="openLightbox(this.src)">
-                    <div class="project-stats" style="margin-top: 16px;">
+                    <div class="project-stats">
                         <div class="stat">⭐ 19</div>
                         <div class="stat">🔀 5</div>
                         <div class="stat"><span class="language-dot"></span> Lua</div>
@@ -320,7 +717,7 @@
         </div>
 
         <!-- Contact Section -->
-        <section class="contact-section">
+        <section class="contact-section" id="contact" style="scroll-margin-top: 100px;">
             <h2 class="contact-title">Get in Touch</h2>
             <div class="contact-grid">
                 <a href="mailto:your.email@example.com" class="contact-card">
@@ -350,66 +747,246 @@
 
     <script>
         let currentFilter = 'all';
+        let searchText = '';
+        let currentView = 'grid';
+        let menuOpen = false;
 
-        function initializeFilters() {
-            const allTags = new Set();
-            document.querySelectorAll('.project-card').forEach(card => {
-                const tagsAttr = card.getAttribute('data-tags') || '';
-                const tags = tagsAttr.split(',');
-                tags.forEach(tag => {
-                    const t = tag.trim();
-                    if (t) allTags.add(t);
-                });
-            });
+        // Toggle Menu Hamburger
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            const sideMenu = document.getElementById('side-menu');
+            const overlay = document.getElementById('menu-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
 
-            const select = document.getElementById('filter-select');
-            [...allTags].sort().forEach(tag => {
-                const opt = document.createElement('option');
-                opt.value = tag;
-                opt.textContent = tag;
-                select.appendChild(opt);
-            });
-
-            select.addEventListener('change', (e) => {
-                applyFilter(e.target.value);
-            });
+            if (menuOpen) {
+                sideMenu.classList.add('active');
+                overlay.classList.add('active');
+                hamburger.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sideMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
 
-        function applyFilter(tag) {
-            currentFilter = tag;
-            document.querySelectorAll('.project-card').forEach(card => {
-                const tags = (card.getAttribute('data-tags') || '')
-                    .split(',')
-                    .map(t => t.trim());
-                if (tag === 'all' || tags.includes(tag)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
+        // Naviga alla sezione e chiudi menu
+        function navigateToSection(event, sectionId) {
+            event.preventDefault();
+            
+            // Chiudi il menu
+            toggleMenu();
+            
+            // Aspetta che l'animazione del menu finisca
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const elementPosition = section.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Aggiorna menu item attivo
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.closest('.menu-item').classList.add('active');
+            }, 300);
+        }
+
+        // Evidenzia menu item attivo durante lo scroll
+        function highlightActiveMenuItem() {
+            const sections = ['home', 'projects', 'contact'];
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        document.querySelectorAll('.menu-item').forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${sectionId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
                 }
             });
         }
 
-        // Mantiene compatibilità coi "topic" cliccabili dd
+        window.addEventListener('scroll', highlightActiveMenuItem);
+
+        // Cambia visualizzazione
+        function setView(view) {
+            currentView = view;
+            const grid = document.getElementById('projects-grid');
+            const gridBtn = document.getElementById('grid-btn');
+            const listBtn = document.getElementById('list-btn');
+
+            if (view === 'grid') {
+                grid.classList.remove('list-view');
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+            } else {
+                grid.classList.add('list-view');
+                listBtn.classList.add('active');
+                gridBtn.classList.remove('active');
+            }
+        }
+
+        // Toggle filtri
+        function toggleFilters() {
+            const filterSection = document.getElementById('filter-section');
+            const filterBtn = document.getElementById('filter-btn');
+            
+            filterSection.classList.toggle('show');
+            filterBtn.classList.toggle('active');
+        }
+
+        // Inizializza il filtro automaticamente
+        function initializeFilters() {
+            const allTags = new Set();
+            
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tagsAttr = card.getAttribute('data-tags') || '';
+                const tags = tagsAttr.split(',');
+                tags.forEach(tag => {
+                    const trimmedTag = tag.trim();
+                    if (trimmedTag) allTags.add(trimmedTag);
+                });
+            });
+
+            const select = document.getElementById('filter-select');
+            const sortedTags = [...allTags].sort((a, b) => a.localeCompare(b));
+            
+            sortedTags.forEach(tag => {
+                const option = document.createElement('option');
+                option.value = tag;
+                option.textContent = tag;
+                select.appendChild(option);
+            });
+
+            select.addEventListener('change', (e) => {
+                currentFilter = e.target.value;
+                applyFilters();
+            });
+
+            const searchInput = document.getElementById('filter-input');
+            searchInput.addEventListener('input', (e) => {
+                searchText = e.target.value.toLowerCase();
+                applyFilters();
+            });
+        }
+
+        // Applica filtri
+        function applyFilters() {
+            let visibleCount = 0;
+            const totalProjects = document.querySelectorAll('.project-card').length;
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tags = (card.getAttribute('data-tags') || '')
+                    .split(',')
+                    .map(t => t.trim());
+                
+                const matchesTag = currentFilter === 'all' || tags.includes(currentFilter);
+
+                let matchesSearch = true;
+                if (searchText) {
+                    const title = card.querySelector('.project-title').textContent.toLowerCase();
+                    const description = card.querySelector('.project-description').textContent.toLowerCase();
+                    const cardTags = tags.join(' ').toLowerCase();
+                    
+                    matchesSearch = title.includes(searchText) || 
+                                  description.includes(searchText) || 
+                                  cardTags.includes(searchText);
+                }
+
+                if (matchesTag && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            updateResultsCount(visibleCount, totalProjects);
+        }
+
+        // Aggiorna contatore
+        function updateResultsCount(visible, total) {
+            const countElement = document.getElementById('results-count');
+            if (visible === total) {
+                countElement.textContent = `Mostrando tutti i ${total} progetti`;
+            } else if (visible === 0) {
+                countElement.textContent = '❌ Nessun progetto trovato';
+                countElement.style.color = '#ff6b35';
+            } else {
+                countElement.textContent = `✅ Mostrando ${visible} di ${total} progetti`;
+                countElement.style.color = '#10b981';
+            }
+
+            setTimeout(() => {
+                countElement.style.color = '#9ca3af';
+            }, 2000);
+        }
+
+        // Pulisci filtri
+        function clearFilters() {
+            searchText = '';
+            currentFilter = 'all';
+            document.getElementById('filter-input').value = '';
+            document.getElementById('filter-select').value = 'all';
+            applyFilters();
+        }
+
+        // Filtra per tag
         function filterByTag(tag) {
+            // Mostra i filtri se nascosti
+            const filterSection = document.getElementById('filter-section');
+            const filterBtn = document.getElementById('filter-btn');
+            if (!filterSection.classList.contains('show')) {
+                filterSection.classList.add('show');
+                filterBtn.classList.add('active');
+            }
+            
+            currentFilter = tag;
             const select = document.getElementById('filter-select');
             if (select) select.value = tag;
-            applyFilter(tag);
+            applyFilters();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Lightbox
         function openLightbox(src) {
             document.getElementById('lightbox').classList.add('active');
             document.getElementById('lightbox-img').src = src;
+            document.body.style.overflow = 'hidden';
         }
+
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
         }
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeLightbox();
         });
 
         // Init
-        initializeFilters();
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFilters();
+            console.log('🚀 Portfolio Gamberone caricato!');
+        });
     </script>
 </body>
 </html>
