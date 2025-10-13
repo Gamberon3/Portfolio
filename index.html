@@ -1158,20 +1158,20 @@
             
             <div class="discord-container">
                 <div class="discord-info">
-                    <div class="discord-icon">💬</div>
+                    <div class="discord-icon" id="discord-server-icon">💬</div>
                     <div class="discord-details">
-                        <h3 class="discord-server-name">Gamberone's Community</h3>
-                        <p class="discord-description">
-                            Server Discord ufficiale per discutere di progetti GMod, addons, ricevere supporto e condividere idee con la community.
+                        <h3 class="discord-server-name" id="discord-server-name">Caricamento...</h3>
+                        <p class="discord-description" id="discord-server-description">
+                            Connessione al server Discord in corso...
                         </p>
                         <div class="discord-stats">
                             <div class="discord-stat">
                                 <span class="discord-stat-icon">👥</span>
-                                <span>500+ Membri</span>
+                                <span id="discord-members">-- Membri</span>
                             </div>
                             <div class="discord-stat">
                                 <span class="discord-stat-icon">🟢</span>
-                                <span>200+ Online</span>
+                                <span id="discord-online">-- Online</span>
                             </div>
                             <div class="discord-stat">
                                 <span class="discord-stat-icon">💬</span>
@@ -1201,7 +1201,7 @@
                 </div>
 
                 <div class="discord-actions">
-                    <a href="https://discord.gg/yourserver" target="_blank" class="discord-btn discord-btn-primary">
+                    <a href="#" id="discord-invite-link" target="_blank" class="discord-btn discord-btn-primary">
                         <span>💬</span>
                         <span>Unisciti al Server</span>
                     </a>
@@ -1209,6 +1209,11 @@
                         <span>👤</span>
                         <span>Contattami su Discord</span>
                     </a>
+                </div>
+
+                <!-- Widget alternativo iframe -->
+                <div style="text-align: center; margin-top: 24px;">
+                    <iframe id="discord-widget" src="" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="border-radius: 12px; display: none;"></iframe>
                 </div>
             </div>
         </section>
@@ -1503,8 +1508,78 @@
         // Init
         document.addEventListener('DOMContentLoaded', function() {
             initializeFilters();
+            loadDiscordInfo();
             console.log('🚀 Portfolio Gamberone caricato!');
         });
+
+        // Carica informazioni Discord automaticamente
+        async function loadDiscordInfo() {
+            // SOSTITUISCI QUESTO CON IL TUO INVITE CODE (es: 'abcd1234' da discord.gg/abcd1234)
+            const DISCORD_INVITE_CODE = 'yourserver'; 
+            
+            // OPPURE usa l'ID del server se hai il widget abilitato
+            const DISCORD_SERVER_ID = '1236883017377644576'; // Server Settings > Widget > Server ID
+            
+            try {
+                // Metodo 1: Usa l'API invite (più semplice, no setup richiesto)
+                const inviteResponse = await fetch(`https://discord.com/api/v10/invites/${DISCORD_INVITE_CODE}?with_counts=true`);
+                
+                if (inviteResponse.ok) {
+                    const inviteData = await inviteResponse.json();
+                    
+                    // Aggiorna nome server
+                    document.getElementById('discord-server-name').textContent = inviteData.guild.name;
+                    
+                    // Aggiorna descrizione se disponibile
+                    if (inviteData.guild.description) {
+                        document.getElementById('discord-server-description').textContent = inviteData.guild.description;
+                    } else {
+                        document.getElementById('discord-server-description').textContent = 
+                            'Server Discord ufficiale per discutere di progetti GMod, addons, ricevere supporto e condividere idee con la community.';
+                    }
+                    
+                    // Aggiorna statistiche
+                    document.getElementById('discord-members').textContent = 
+                        `${inviteData.approximate_member_count}+ Membri`;
+                    document.getElementById('discord-online').textContent = 
+                        `${inviteData.approximate_presence_count}+ Online`;
+                    
+                    // Aggiorna link invite
+                    document.getElementById('discord-invite-link').href = `https://discord.gg/${DISCORD_INVITE_CODE}`;
+                    
+                    // Aggiorna icona se disponibile
+                    if (inviteData.guild.icon) {
+                        const iconUrl = `https://cdn.discordapp.com/icons/${inviteData.guild.id}/${inviteData.guild.icon}.png?size=128`;
+                        const iconElement = document.getElementById('discord-server-icon');
+                        iconElement.innerHTML = `<img src="${iconUrl}" alt="${inviteData.guild.name}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+                    }
+                    
+                    console.log('✅ Info Discord caricate con successo!');
+                } else {
+                    throw new Error('Invite non valido');
+                }
+            } catch (error) {
+                console.warn('⚠️ Impossibile caricare le info Discord automatiche:', error);
+                
+                // Fallback ai valori statici
+                document.getElementById('discord-server-name').textContent = "Gamberone's Community";
+                document.getElementById('discord-server-description').textContent = 
+                    'Server Discord ufficiale per discutere di progetti GMod, addons, ricevere supporto e condividere idee con la community.';
+                document.getElementById('discord-members').textContent = '500+ Membri';
+                document.getElementById('discord-online').textContent = '200+ Online';
+                document.getElementById('discord-invite-link').href = `https://discord.gg/${DISCORD_INVITE_CODE}`;
+            }
+            
+            // Metodo 2 (opzionale): Mostra widget iframe se il widget è abilitato nel server
+            // Per abilitarlo: Server Settings > Widget > Enable Server Widget
+            // Decommentare le righe sotto per usare il widget:
+            
+            /*
+            const widgetIframe = document.getElementById('discord-widget');
+            widgetIframe.src = `https://discord.com/widget?id=${DISCORD_SERVER_ID}&theme=dark`;
+            widgetIframe.style.display = 'block';
+            */
+        }
     </script>
 </body>
 </html>
