@@ -12,71 +12,14 @@
             background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 50%, #0a0a0f 100%);
             color: white;
             min-height: 100vh;
-            transition: background 0.4s ease, color 0.4s ease;
-        }
-
-        body.light-mode {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
-            color: #1a1a1a;
-        }
-
-        body.light-mode header {
-            background: rgba(255, 255, 255, 0.95);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        body.light-mode .side-menu {
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        body.light-mode .project-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        body.light-mode .view-btn {
-            background: rgba(255, 255, 255, 0.8);
-            color: #8b5cf6;
-        }
-
-        body.light-mode .filter-input,
-        body.light-mode .filter-select {
-            background: rgba(255, 255, 255, 0.9);
-            color: #1a1a1a;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        body.light-mode .project-description {
-            color: #4b5563;
-        }
-
-        body.light-mode .contact-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        body.light-mode .github-button {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        body.light-mode .menu-item {
-            color: #4b5563;
-        }
-
-        body.light-mode .menu-item:hover {
-            color: #1a1a1a;
-        }
-
-        body.light-mode .toggle-label {
-            color: #1a1a1a;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Header */
         header {
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            background: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid #374151;
+            background: rgba(17, 24, 39, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -84,7 +27,7 @@
         }
 
         .header-content {
-            padding: 20px 0;
+            padding: 32px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -239,60 +182,6 @@
             padding: 24px 0;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            padding: 24px;
-            border-top: 1px solid rgba(139, 92, 246, 0.2);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .toggle-label {
-            color: #d1d5db;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: rgba(139, 92, 246, 0.2);
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        .toggle-switch:hover {
-            background: rgba(139, 92, 246, 0.3);
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 22px;
-            height: 22px;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .toggle-switch.active .toggle-slider {
-            left: 33px;
-        }
-
         .menu-item {
             display: flex;
             align-items: center;
@@ -326,14 +215,14 @@
         }
 
         .logo {
-            width: 50px; height: 50px;
+            width: 64px; height: 64px;
             background: #ff6b35; border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 26px; font-weight: bold;
+            font-size: 32px; font-weight: bold;
         }
 
-        h1 { font-size: 28px; font-weight: bold; margin-bottom: 4px; }
-        .subtitle { color: #9ca3af; font-size: 13px; }
+        h1 { font-size: 36px; font-weight: bold; margin-bottom: 4px; }
+        .subtitle { color: #9ca3af; font-size: 14px; }
 
         /* View Controls */
         .view-controls {
@@ -749,15 +638,6 @@
                 <span>Contatti</span>
             </a>
         </div>
-        
-        <div class="theme-toggle">
-            <div class="toggle-container">
-                <span class="toggle-label">🌙 Tema Scuro</span>
-                <div class="toggle-switch" id="theme-toggle" onclick="toggleTheme()">
-                    <div class="toggle-slider">🌙</div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Lightbox -->
@@ -886,7 +766,7 @@
                         </div>
                         <a href="https://github.com/yourusername/weapons" target="_blank" class="github-link">🔗</a>
                     </div>
-                    <p class="project-description">Easy year setup. Faction and model, life and more change based on year.</p>
+                    <p class="project-description">Easy year setup.Faction and model,life and more change based on year.</p>
                     <div class="project-stats">
                         <div class="stat">⭐ 0</div>
                         <div class="stat">🔀 0</div>
@@ -894,4 +774,317 @@
                     </div>
                     <div class="topics">
                         <span class="topic" onclick="filterByTag('Helix')">Helix</span>
-                        <span class="topic" onclick
+                        <span class="topic" onclick="filterByTag('Plugins')">Plugins</span>
+                        <span class="topic" onclick="filterByTag('Roleplay')">Roleplay</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card" data-tags="gmod,tools,admin">
+                <img src="https://via.placeholder.com/1920x1080/1a1a1a/ff6b35?text=Map+Tools" alt="Map Tools" class="project-image" onclick="openLightbox(this.src)">
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-title-wrapper">
+                            <span class="project-icon">💻</span>
+                            <h3 class="project-title">Map Tools</h3>
+                        </div>
+                        <a href="https://github.com/yourusername/maptools" target="_blank" class="github-link">🔗</a>
+                    </div>
+                    <p class="project-description">Essential tools for map creators and admins</p>
+                    <div class="project-stats">
+                        <div class="stat">⭐ 19</div>
+                        <div class="stat">🔀 5</div>
+                        <div class="stat"><span class="language-dot"></span> Lua</div>
+                    </div>
+                    <div class="topics">
+                        <span class="topic" onclick="filterByTag('gmod')">gmod</span>
+                        <span class="topic" onclick="filterByTag('tools')">tools</span>
+                        <span class="topic" onclick="filterByTag('admin')">admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Link -->
+        <div class="github-section">
+            <a href="https://github.com/yourusername" target="_blank" class="github-button">
+                <span>📦</span>
+                <span>View All Projects on GitHub</span>
+            </a>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact" style="scroll-margin-top: 100px;">
+            <h2 class="contact-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <a href="mailto:your.email@example.com" class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p>your.email@example.com</p>
+                    </div>
+                </a>
+                <a href="https://discord.gg/yourserver" target="_blank" class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-info">
+                        <h3>Discord</h3>
+                        <p>Join my server</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Gamberone - Garry's Mod Projects</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentFilter = 'all';
+        let searchText = '';
+        let currentView = 'grid';
+        let menuOpen = false;
+
+        // Toggle Menu Hamburger
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            const sideMenu = document.getElementById('side-menu');
+            const overlay = document.getElementById('menu-overlay');
+            const hamburger = document.getElementById('hamburger-btn');
+
+            if (menuOpen) {
+                sideMenu.classList.add('active');
+                overlay.classList.add('active');
+                hamburger.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sideMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Naviga alla sezione e chiudi menu
+        function navigateToSection(event, sectionId) {
+            event.preventDefault();
+            
+            // Chiudi il menu
+            toggleMenu();
+            
+            // Aspetta che l'animazione del menu finisca
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const elementPosition = section.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Aggiorna menu item attivo
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                event.target.closest('.menu-item').classList.add('active');
+            }, 300);
+        }
+
+        // Evidenzia menu item attivo durante lo scroll
+        function highlightActiveMenuItem() {
+            const sections = ['home', 'projects', 'contact'];
+            const scrollPos = window.scrollY + 150;
+
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        document.querySelectorAll('.menu-item').forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('href') === `#${sectionId}`) {
+                                item.classList.add('active');
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveMenuItem);
+
+        // Cambia visualizzazione
+        function setView(view) {
+            currentView = view;
+            const grid = document.getElementById('projects-grid');
+            const gridBtn = document.getElementById('grid-btn');
+            const listBtn = document.getElementById('list-btn');
+
+            if (view === 'grid') {
+                grid.classList.remove('list-view');
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+            } else {
+                grid.classList.add('list-view');
+                listBtn.classList.add('active');
+                gridBtn.classList.remove('active');
+            }
+        }
+
+        // Toggle filtri
+        function toggleFilters() {
+            const filterSection = document.getElementById('filter-section');
+            const filterBtn = document.getElementById('filter-btn');
+            
+            filterSection.classList.toggle('show');
+            filterBtn.classList.toggle('active');
+        }
+
+        // Inizializza il filtro automaticamente
+        function initializeFilters() {
+            const allTags = new Set();
+            
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tagsAttr = card.getAttribute('data-tags') || '';
+                const tags = tagsAttr.split(',');
+                tags.forEach(tag => {
+                    const trimmedTag = tag.trim();
+                    if (trimmedTag) allTags.add(trimmedTag);
+                });
+            });
+
+            const select = document.getElementById('filter-select');
+            const sortedTags = [...allTags].sort((a, b) => a.localeCompare(b));
+            
+            sortedTags.forEach(tag => {
+                const option = document.createElement('option');
+                option.value = tag;
+                option.textContent = tag;
+                select.appendChild(option);
+            });
+
+            select.addEventListener('change', (e) => {
+                currentFilter = e.target.value;
+                applyFilters();
+            });
+
+            const searchInput = document.getElementById('filter-input');
+            searchInput.addEventListener('input', (e) => {
+                searchText = e.target.value.toLowerCase();
+                applyFilters();
+            });
+        }
+
+        // Applica filtri
+        function applyFilters() {
+            let visibleCount = 0;
+            const totalProjects = document.querySelectorAll('.project-card').length;
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                const tags = (card.getAttribute('data-tags') || '')
+                    .split(',')
+                    .map(t => t.trim());
+                
+                const matchesTag = currentFilter === 'all' || tags.includes(currentFilter);
+
+                let matchesSearch = true;
+                if (searchText) {
+                    const title = card.querySelector('.project-title').textContent.toLowerCase();
+                    const description = card.querySelector('.project-description').textContent.toLowerCase();
+                    const cardTags = tags.join(' ').toLowerCase();
+                    
+                    matchesSearch = title.includes(searchText) || 
+                                  description.includes(searchText) || 
+                                  cardTags.includes(searchText);
+                }
+
+                if (matchesTag && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            updateResultsCount(visibleCount, totalProjects);
+        }
+
+        // Aggiorna contatore
+        function updateResultsCount(visible, total) {
+            const countElement = document.getElementById('results-count');
+            if (visible === total) {
+                countElement.textContent = `Mostrando tutti i ${total} progetti`;
+            } else if (visible === 0) {
+                countElement.textContent = '❌ Nessun progetto trovato';
+                countElement.style.color = '#ff6b35';
+            } else {
+                countElement.textContent = `✅ Mostrando ${visible} di ${total} progetti`;
+                countElement.style.color = '#10b981';
+            }
+
+            setTimeout(() => {
+                countElement.style.color = '#9ca3af';
+            }, 2000);
+        }
+
+        // Pulisci filtri
+        function clearFilters() {
+            searchText = '';
+            currentFilter = 'all';
+            document.getElementById('filter-input').value = '';
+            document.getElementById('filter-select').value = 'all';
+            applyFilters();
+        }
+
+        // Filtra per tag
+        function filterByTag(tag) {
+            // Mostra i filtri se nascosti
+            const filterSection = document.getElementById('filter-section');
+            const filterBtn = document.getElementById('filter-btn');
+            if (!filterSection.classList.contains('show')) {
+                filterSection.classList.add('show');
+                filterBtn.classList.add('active');
+            }
+            
+            currentFilter = tag;
+            const select = document.getElementById('filter-select');
+            if (select) select.value = tag;
+            applyFilters();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = src;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFilters();
+            console.log('🚀 Portfolio Gamberone caricato!');
+        });
+    </script>
+</body>
+</html>
